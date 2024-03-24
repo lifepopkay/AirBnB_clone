@@ -1,6 +1,6 @@
 # Airbnb Clone Project - Command Interpreter
 
-![hbnb photo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240323%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240323T090057Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=1fe61a382faa5ae5f929dfafc97368ccce9b384016c9006530765ce29161b8ea)
+![hbnb photo](./images/hbnb.png)
 Welcome to the Airbnb clone project! This project is the first step toward building a full web application: the Airbnb clone. In this initial phase, you will create a command interpreter to manage your Airbnb objects.
 
 ## Background Context
