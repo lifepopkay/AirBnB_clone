@@ -21,7 +21,11 @@ class BaseModel:
         if kwargs:
             for attr_name, value in kwargs.items():
                 if attr_name == 'created_at' or attr_name == 'updated_at':
-                    value = datetime.fromisoformat(kwargs[attr_name])
+                    try:
+                        fmt = "%Y-%m-%dT%H:%M:%S.%f"
+                        value = datetime.fromisoformat(kwargs[attr_name])
+                        except AttributeError:
+                            value = datetime.strptime(kwargs[attr_name], fmt)
                 if attr_name != '__class__':
                     pass
                 else:
