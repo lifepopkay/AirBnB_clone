@@ -9,7 +9,7 @@ class FileStorage:
     """ File Storage class
         Attr:
             __file_path (str) : the file path
-            __objects (dict) : stores all objects 
+            __objects (dict) : stores all objects
 
     """
     __file_path = "file.json"
@@ -29,7 +29,8 @@ class FileStorage:
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         with open(FileStorage.__file_path, mode='w') as file:
-            obj_dict = {key: obj.to_dict() for key, obj in self.__objects.items()}
+            obj_dict = {key: obj.to_dict()
+                        for key, obj in self.__objects.items()}
             json.dump(obj_dict, file)
 
     def reload(self):
@@ -43,7 +44,10 @@ class FileStorage:
             with open(FileStorage.__file_path, mode='r') as file:
                 retrieved_objects = json.load(file)
                 for key, value in retrieved_objects.items():
-                    """Get the class name from the '__class__' key inside the value"""
+                    """
+                        Get the class name from the '__class__'
+                        key inside the value
+                    """
                     class_name = value['__class__']
                     properties = value
                     object_to_store = eval(class_name)(**properties)
