@@ -3,6 +3,14 @@
 
 import json
 from models.base_model import BaseModel
+"""from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+"""
 
 
 class FileStorage:
@@ -21,7 +29,7 @@ class FileStorage:
 
     def new(self, obj):
         """ sets in __objects the obj with key <obj class name>.id"""
-        obj_class_name = obj.__class__.name
+        obj_class_name = obj.__class__.__name__
         obj_id = obj.id
         key_name = obj_class_name + "." + obj_id
         FileStorage.__objects[key_name] = obj
@@ -36,7 +44,7 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects
         (only if the JSON file (__file_path) exists ;
-        otherwise, do nothing. If the file doesn’t exist,
+        otherwise, do nothing. If the file doesn't exist,
         no exception should be raised"""
         retrieved_objects = {}
         try:
