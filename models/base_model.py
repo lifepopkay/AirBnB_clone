@@ -24,9 +24,9 @@ class BaseModel:
                     try:
                         fmt = "%Y-%m-%dT%H:%M:%S.%f"
                         value = datetime.fromisoformat(kwargs[attr_name])
-                        except AttributeError:
-                            value = datetime.strptime(kwargs[attr_name], fmt)
-                if attr_name != '__class__':
+                    except AttributeError:
+                        value = datetime.strptime(kwargs[attr_name], fmt)
+                if attr_name == '__class__':
                     pass
                 else:
                     setattr(self, attr_name, value)
