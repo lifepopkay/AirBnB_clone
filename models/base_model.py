@@ -4,7 +4,7 @@
 
 import uuid
 from datetime import datetime
-from models import storage
+"""from models import storage"""
 
 
 class BaseModel:
@@ -22,7 +22,7 @@ class BaseModel:
             for attr_name, value in kwargs.items():
                 if attr_name == 'created_at' or attr_name == 'updated_at':
                     value = datetime.fromisoformat(kwargs[attr_name])
-                if attr_name == '__class__':
+                if attr_name != '__class__':
                     pass
                 else:
                     setattr(self, attr_name, value)
@@ -45,7 +45,6 @@ class BaseModel:
     def save(self):
         """Saves the instance to storage."""
         self.updated_at = datetime.now()
-        #storage.save()
 
     def __str__(self):
         """Returns a string representation of the instance."""
