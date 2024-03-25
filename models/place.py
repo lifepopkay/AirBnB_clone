@@ -19,14 +19,14 @@ class Place(BaseModel):
             longitude (float): longitude coordinate of the place
             amenity_ids (list): a list of amenities (Amenity.i
     """
-    city_id: str = ''
-    user_id: str = ''
-    name: str = ''
-    description: str = ''
-    numbers_rooms: int = ''
-    numbers_bathroom: int = ''
-    max_guest: int = 0
-    price_by_night: int = 0
-    latitude: float = 0.0
-    longitude: float = 0.0
-    amenity_ids: list = []
+    city_id = ''
+    user_id = ''
+    name = ''
+    description = ''
+    numbers_rooms = ''
+    numbers_bathroom = ''
+    max_guest = 0
+    price_by_night = 0
+    latitude = 0.0
+    longitude = 0.0
+    amenity_ids = []

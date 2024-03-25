@@ -10,5 +10,5 @@ class City(BaseModel):
             state_id: state identification number
             name: The name of the city
     """
-    state_id: str = ''
-    name: str = ''
+    state_id = ''
+    name = ''

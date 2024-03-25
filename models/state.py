@@ -9,4 +9,4 @@ class State(BaseModel):
         Attributes:
             name : Name of the user state
     """
-    name: str = ''
+    name = ''
