@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+"""Import the uuid - unique identifier, the datetime module, and storage"""
+
 import uuid
 from datetime import datetime
 from models import storage
@@ -25,6 +27,7 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             storage.new(self)
+
     def to_dict(self):
         """Returns a dictionary representation of the instance."""
         obj_dict = self.__dict__.copy()
