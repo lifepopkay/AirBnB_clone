@@ -20,7 +20,11 @@ class BaseModel:
         """Initializes a new instance of the BaseModel class."""
         if kwargs:
             for attr_name, value in kwargs.items():
-                if attr_name != '__class__':
+                if attr_name == 'created_at' or attr_name == 'updated_at':
+                    value = datetime.fromisoformat(kwargs[attr_name])
+                if attr_name == '__class__':
+                    pass
+                else:
                     setattr(self, attr_name, value)
         else:
             self.id = str(uuid.uuid4())
