@@ -53,5 +53,10 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string representation of the instance."""
+<<<<<<< HEAD
         return "[{}] ({}) ({})".format(self.__class__.__name__, self.id,
                                        self.__dict__)
+=======
+        return "[{}] ({}) ({})"\
+        .format(self.__class__.__name__, self.id, self.__dict__)
+>>>>>>> 18b8c86aa04058ed83bb6b0beb2517f1cae0c430
