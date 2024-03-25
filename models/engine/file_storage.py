@@ -51,6 +51,8 @@ class FileStorage:
             """Load our data back from file storage"""
             with open(FileStorage.__file_path, mode='r') as file:
                 retrieved_objects = json.load(file)
+
+                object_to_store = {}
                 for key, value in retrieved_objects.items():
                     """
                         Get the class name from the '__class__'
@@ -58,7 +60,7 @@ class FileStorage:
                     """
                     class_name = value['__class__']
                     properties = value
-                    object_to_store = eval(class_name)(**properties)
-                FileStorage.__objects[key] = object_to_store
+                    object_to_store[key] = eval(class_name)(**properties)
+                FileStorage.__objects.update(object_to_store)
         except FileNotFoundError:
             pass
