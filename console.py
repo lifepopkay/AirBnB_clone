@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
             print(f"** class doesn't exist **")
 
     def do_split_cmd(self, line):
-        return (line.split())
+        return line.split()
 
     def do_update(self, line):
         args = self.do_split_cmd(line)
