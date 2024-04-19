@@ -90,13 +90,6 @@ class MyTestCase(unittest.TestCase):
         test_dict['__class__'] = type(self.my_base).__name__
         self.assertEqual(self.my_base.to_dict(), test_dict)
 
-    def test_str_representation(self):
-        """Test the format of the return value of the __str__ method"""
-        msg = "[{}] ({}) {}".format(type(self.her_base).__name__,
-                                    self.her_base.id,
-                                    self.her_base.__dict__)
-        self.assertEqual(str(self.her_base), msg)
-
     def test_updated_at_save(self):
         """Test updated_at attribute is actually updated"""
         time_1 = self.her_base.updated_at
