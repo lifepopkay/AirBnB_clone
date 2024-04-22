@@ -22,8 +22,8 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def preloop(self):
-        print ('Welcome to My Console')
-        super(HBNBCommand,self).preloop()
+        print('Welcome to My Console')
+        super(HBNBCommand, self).preloop()
 
     def do_create(self, modelName):
         """Creates a new instance of BaseModel"""
@@ -75,11 +75,9 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         if len(args) >= 2:
             instance = args[0] + "." + args[1]
-            all_instance = storage.all()
-            for obj in all_instance.keys():
-                if obj == instance:
-                    print(all_instance[obj])
-                    break
+            if obj == instance:
+                print(all_instance[obj])
+                break
             else:
                 print("** no instance found **")
 
@@ -142,8 +140,8 @@ class HBNBCommand(cmd.Cmd):
         print("Unknown command:", line)
 
     def postloop(self):
-        print ('Goodbye, See you soon!')
-        super(HBNBCommand,self).postloop()
+        print('Goodbye, See you soon!')
+        super(HBNBCommand, self).postloop()
 
 
 if __name__ == '__main__':
