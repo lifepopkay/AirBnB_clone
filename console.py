@@ -6,7 +6,7 @@ This is the entry point of the interpreter.
 
 import cmd
 import shlex
-from models.basemodel import BaseModel
+from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
 from models.city import City
@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         elif line not in self.l_classes:
             print("** class doesn't exist **")
         else:
-            print(f"createing {line}")
+            print("createing {}".format(line))
             print()
             new_instance = BaseModel()
             print(new_instance.id)
