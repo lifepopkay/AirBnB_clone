@@ -75,9 +75,10 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         if len(args) >= 2:
             instance = args[0] + "." + args[1]
-            if obj == instance:
-                print(all_instance[obj])
-                break
+            for obj in all_instance.keys():
+                if obj == instance:
+                    print(all_instance[obj])
+                    break
             else:
                 print("** no instance found **")
 
