@@ -7,7 +7,6 @@ This is the entry point of the interpreter.
 import cmd
 import shlex
 from models.basemodel import BaseModel
-from models.basemodel import BaseModel
 from models.user import User
 from models.amenity import Amenity
 from models.city import City
@@ -26,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
     l_classes = ['BaseModel', 'User', 'Amenity',
-                 'Place', 'City', 'State', 'Review']    
+                 'Place', 'City', 'State', 'Review']
 
     def do_create(self, line):
         """Create a new instance od basemodel"""
@@ -36,37 +35,34 @@ class HBNBCommand(cmd.Cmd):
         elif line not in self.l_classes:
             print("** class doesn't exist **")
         else:
-            dct = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                   'City': City, 'Amenity': Amenity, 'State': State,
-                   'Review': Review}
-            my_model = dct[line]()
-            print(my_model.id)
-            my_model.save()
-            
+            print(f"createing {line}")
+            print()
+            new_instance = BaseModel()
+            print(new_instance.id)
+            new_instance.save()
 
     def do_show(self, line):
         """Print string representation of an instance"""
-  
+
         if line == '':
             print("** class name missing **")
             return
-        
+
         args = line.split()
 
         if args[0] != "BaseModel":
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
-        else:    
+        else:
             """call all instances from the storage"""
             my_storage = storage.all()
             for obj in my_storage.keys():
                 instance = args[0] + '.' + args[1]
                 if obj == instance:
                     print(my_storage[obj])
-                    return    
+                    return
             print("** no instance found **")
-
 
     def do_destroy(self, line):
         """Delete an instance from the storage"""
@@ -78,9 +74,9 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
 
         if args[0] != "BaseModel":
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         elif len(args) == 1:
-                print("** instance id missing **")
+            print("** instance id missing **")
         else:
             """call storage file and check present of instance"""
             my_storage = storage.all()
@@ -93,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                     return
             print("** no instance found **")
-    
+
     def do_all(self, line):
         """Prints all string representation of all instances"""
         all_obj = []
@@ -147,7 +143,7 @@ class HBNBCommand(cmd.Cmd):
         """A method for proper terminal exit"""
         print()
         return True
-    
+
     def emptyline(self):
         """Handle when an empty string is passed"""
         pass
@@ -155,6 +151,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Handles unknown commands."""
         print("Unknown command:", line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
