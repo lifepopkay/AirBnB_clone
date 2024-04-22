@@ -107,6 +107,7 @@ class HBNBCommand(cmd.Cmd):
                 if ob_name == args[0] and ob_id == args[1]:
                     del val
                     del storage._FileStorage__objects[obj]
+                    storage.save()
                     return
             else:
                 print("** no instance found **")
@@ -150,4 +151,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop(
+    HBNBCommand().cmdloop()
