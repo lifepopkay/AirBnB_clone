@@ -21,18 +21,20 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
 
+    all_classes = ['BaseModel', 'User', 'Amenity',
+                 'Place', 'City', 'State', 'Review']
+
     def preloop(self):
         print('Welcome to My Console')
         super(HBNBCommand, self).preloop()
 
     def do_create(self, modelName):
         """Creates a new instance of BaseModel"""
-        if modelName == "BaseModel":
+        if modelName in HBNBCommand.all_classes:
             print("creating {}".format(modelName))
-            newInstance = BaseModel()
+            newInstance = eval(modelName)()
             newInstance.save()
             print(newInstance.id)
-
         elif modelName == "":
             print(f"** class name missing **")
         else:
@@ -45,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         args = self.do_split_cmd(line)
         if line == "":
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.all_classes:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -71,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if args[0] != "BaseModel":
+        if args[0] not in HBNBCommand.all_classes:
             print("** class doesn't exist **")
             return
         elif len(args) == 1:
@@ -92,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if args[0] != "BaseModel":
+        if args[0] not in HBNBCommand.all_classes:
             print("** class doesn't exist **")
             return
         elif len(args) == 1:
@@ -105,14 +107,13 @@ class HBNBCommand(cmd.Cmd):
                 if ob_name == args[0] and ob_id == args[1]:
                     del val
                     del storage._FileStorage__objects[obj]
-                    storage.save()
                     return
             else:
                 print("** no instance found **")
 
     def do_all(self, line):
         all_obj = []
-        if line == '' or line == 'BaseModel':
+        if line == '' or line in HBNBCommand.all_classes:
             all_instance = storage.all()
             for obj in all_instance.keys():
                 all_obj.append(str(all_instance[obj]))
@@ -149,4 +150,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop(
