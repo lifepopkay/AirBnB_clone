@@ -22,11 +22,26 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     all_classes = ['BaseModel', 'User', 'Amenity',
-                 'Place', 'City', 'State', 'Review']
+                   'Place', 'City', 'State', 'Review']
+    a_f = ['create', 'show', 'update', 'all', 'destroy', 'count']
 
     def preloop(self):
         print('Welcome to My Console')
         super(HBNBCommand, self).preloop()
+
+    def precmd(self, line):
+        """interchange the funtion and the class position"""
+        if '.' in line and '(' in line and ')' in line:
+            args_1 = line.split('.')
+            d_cls = args_1[0]
+            args_2 = args_1[1].split('(')
+            func_1 = args_2[0]
+            args_3 = args_2[1].split(')')
+            func_2 = args_3[0]
+
+            if d_cls in HBNBCommand.all_classes and func_1 in HBNBCommand.a_f:
+                line = func_1 + ' ' + d_cls + ' ' + func_2
+        return line
 
     def do_create(self, modelName):
         """Creates a new instance of BaseModel"""
@@ -114,10 +129,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         all_obj = []
-        if line == '' or line in HBNBCommand.all_classes:
-            all_instance = storage.all()
+        all_instance = storage.all()
+        if line == '':
             for obj in all_instance.keys():
                 all_obj.append(str(all_instance[obj]))
+            print(all_obj)
+        elif line in HBNBCommand.all_classes:
+            for obj in all_instance.keys():
+                if obj.split('.')[0] == line:
+                    all_obj.append(str(all_instance[obj]))
             print(all_obj)
         else:
             print("** class doesn't exist **")
