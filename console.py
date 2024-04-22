@@ -142,6 +142,16 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def do_count(self, line):
+        """counts number of instances of a class"""
+        count = 0
+        all_instances = storage.all()
+        for obj in all_instances.keys():
+            obj_Class = obj.split('.')
+            if obj_Class[0] == line:
+                count = count + 1
+        print(count)
+
     def do_EOF(self, line):
         """A method for proper terminal exit"""
         print()
