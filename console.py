@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-module name: console
+"""module name: console
 This is the entry point of the interpreter.
 """
 
@@ -14,6 +13,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.engine.file_storage import FileStorage
+
 
 class HBNBCommand(cmd.Cmd):
     """The program prompt.
@@ -34,9 +34,9 @@ class HBNBCommand(cmd.Cmd):
             print(newInstance.id)
 
         elif modelName == "":
-            print("** class name missing **")
+            print(f"** class name missing **")
         else:
-            print("** class doesn't exist **")
+            print(f"** class doesn't exist **")
 
     def do_split_cmd(self, line):
         return line.split()
@@ -75,6 +75,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         if len(args) >= 2:
             instance = args[0] + "." + args[1]
+            all_instance = storage.all()
             for obj in all_instance.keys():
                 if obj == instance:
                     print(all_instance[obj])
@@ -127,10 +128,6 @@ class HBNBCommand(cmd.Cmd):
         """Helps to format the description of quit method"""
         print('\n'.join(['Quit: command to exit the program.',
                          'An easy way to exit the program.']))
-
-    def postloop(self):
-        """Implement the print of a newline during exit"""
-        print(end="")
 
     def emptyline(self):
         """Handle when an empty string is passed"""
